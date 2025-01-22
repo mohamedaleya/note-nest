@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import prisma from "~/lib/prisma";
 import validator from "validator";
+import jwt from "jsonwebtoken";
 
 export default defineEventHandler(async (event) => {
   try {
@@ -38,6 +39,10 @@ export default defineEventHandler(async (event) => {
         salt: salt,
       },
     });
+
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+
+    setCookie(event, "NoteNestJWT", token);
 
     return { data: "success!" };
   } catch (error) {

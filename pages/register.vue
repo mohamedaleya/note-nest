@@ -73,14 +73,18 @@ async function submit() {
       }),
     });
 
-    Swal.fire({
+    const { isConfirmed } = await Swal.fire({
       icon: "success",
       title: "Success",
       text: "Account created successfully.",
       confirmButtonText: "Close",
     });
+
+    if (isConfirmed) {
+      navigateTo("/");
+    }
   } catch (error) {
-    console.log("REGISTRATION_ERROR", error.response?._data?.message);
+    console.log("[REGISTRATION_ERROR]", error.response?._data?.message);
     Swal.fire({
       icon: "error",
       title: "Registration Error",

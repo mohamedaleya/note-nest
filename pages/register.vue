@@ -8,8 +8,10 @@
       </h1>
       <p class="mt-0.5 text-sm text-zinc-300">
         Already registered?
-        <span class="font-bold text-[#FFAC00] underline">Log in</span> to your
-        account
+        <nuxt-link to="/login" class="font-bold text-[#FFAC00] underline"
+          >Log in</nuxt-link
+        >
+        to your account
       </p>
       <form @submit.prevent="submit">
         <div class="mt-8">
@@ -19,6 +21,7 @@
           <input
             v-model="email"
             type="email"
+            required
             placeholder="you@example.com"
             class="block w-full rounded border border-[#3F3F46] bg-[#27272A] px-3 py-2 text-sm text-white placeholder:text-zinc-500"
           />
@@ -30,6 +33,7 @@
           <input
             v-model="password"
             type="password"
+            required
             placeholder="**************"
             class="block w-full rounded border border-[#3F3F46] bg-[#27272A] px-3 py-2 text-sm text-white placeholder:text-zinc-500"
           />
